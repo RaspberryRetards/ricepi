@@ -13,9 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Clone repository
-        run: |
-          git clone https://github.com/RaspberryRetards/ricepi
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Install packaging tools
         run: |
@@ -25,11 +24,15 @@ jobs:
       - name: Build .deb package
         run: |
           cd ricepi
-          dpkg-deb --build .
+          dpkg-deb --build ricepi ricepi.deb
+          ls -l 
+
+      - name: Move .deb file to artifact location
+        run: |
           mv ricepi*.deb ../artifact.deb
 
       - name: Upload .deb as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ricepi-deb
           path: artifact.deb
