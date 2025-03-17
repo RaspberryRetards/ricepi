@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+/opt/ricepi/install-deps.sh
