@@ -13,8 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Clone repository
+        run: |
+          git clone https://github.com/RaspberryRetards/ricepi
 
       - name: Install packaging tools
         run: |
