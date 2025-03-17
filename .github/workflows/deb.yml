@@ -24,10 +24,12 @@ jobs:
 
       - name: Build .deb package
         run: |
-          dpkg-deb --build ricepi artifact.deb
+          cd ricepi
+          dpkg-deb --build .
+          mv ricepi*.deb ../artifact.deb
 
       - name: Upload .deb as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: ricepi-deb
-          path: ricepi/artifact.deb
+          path: artifact.deb
