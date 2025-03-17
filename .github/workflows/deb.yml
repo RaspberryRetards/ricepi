@@ -23,11 +23,11 @@ jobs:
 
     - name: Build .deb package
       run: |
-        cd ricepi  # Navigate to the folder where the deb package structure exists
+        cd ricepi
         dpkg-deb --build ricepi artifact.deb
 
     - name: Upload .deb as an artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4-beta
       with:
         name: ricepi-deb-package
         path: ricepi/artifact.deb
