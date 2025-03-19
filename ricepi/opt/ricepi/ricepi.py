@@ -20,6 +20,7 @@ import time
 import os
 import subprocess
 import platform
+import sys
 
 if os.name == "nt":
     raise RuntimeError("Not running on a Raspberry Pi or running Windows unofficially!")
@@ -75,6 +76,7 @@ while True:
 [2] SSH options
 [3] Internet options
 [4] General options
+[99] Exit
 
 Which option would you like to select? """, color, interval=0)
     if choice == "1":
@@ -85,6 +87,7 @@ Which option would you like to select? """, color, interval=0)
 [2] Power off
 [3] Halt
 [4] Immediate reboot (DANGEROUS!)
+[99] Return
 
 Which reboot option would you like to select? """, color, interval=0)
         if rchoice == "1":
@@ -95,6 +98,8 @@ Which reboot option would you like to select? """, color, interval=0)
             os.system("sudo halt")
         elif rchoice == "4":
             os.system("echo b | sudo tee /proc/sysrq-trigger")
+        elif rchoice == "99":
+            continue
     elif choice == "2":
         termclear()
         write_ascii()
@@ -102,6 +107,7 @@ Which reboot option would you like to select? """, color, interval=0)
 [1] Enable SSH
 [2] Disable SSH
 [3] Test SSH (ssh localhost)
+[99] Return
 
 Which SSH option would you like to select? """, color, interval=0)
         if schoice == "1":
@@ -112,6 +118,8 @@ Which SSH option would you like to select? """, color, interval=0)
             os.system("sudo systemctl stop sshd")
         elif schoice == "3":
             os.system("ssh localhost")
+        elif schoice == "99":
+            continue
     elif choice == "3":
         termclear()
         write_ascii()
@@ -119,6 +127,7 @@ Which SSH option would you like to select? """, color, interval=0)
 [1] Show IP addresses
 [2] Test internet connectivity
 [3] Get router IP address
+[99] Return
 
 Which internet option would you like to select? """, color, interval=0)
         if ichoice == "1":
@@ -140,6 +149,8 @@ Which internet option would you like to select? """, color, interval=0)
             os.system("ip route | grep default")
             print()
             pystyle.Write.Input("Press Enter to go back...", color, interval=0)
+        elif ichoice == "99":
+            continue
     elif choice == "4":
         termclear()
         write_ascii()
@@ -149,7 +160,7 @@ Which internet option would you like to select? """, color, interval=0)
 [3] Check Memory Usage      [8] Display System Info
 [4] Check CPU Info          [9] Update your system
 [5] Check System Uptime     [10] Raspberry Pi Hardware Info
-                            [11] Check Raspberry Pi Model and revision
+[99] Return                 [11] Check Raspberry Pi Model and revision
 
 Which option would you like to select? """, color, interval=0)
         if gchoice == "1":
@@ -234,3 +245,7 @@ Which option would you like to select? """, color, interval=0)
             os.system("cat /proc/cpuinfo | grep 'Revision'")
             print()
             pystyle.Write.Input("Press Enter to go back...", color, interval=0)
+        elif gchoice == "99":
+            continue
+    elif choice == "99":
+        sys.exit(0)
