@@ -1,7 +1,6 @@
 <div align="center">
-  <!-- no i dont use windows, the current distro i have has broken SSH even after reinstalling everything i can think of 😭 -->
   <h1>RicePi - The best Raspberry Pi tool.</h1>
-  <img src="https://github.com/user-attachments/assets/4adbddde-1891-4690-9bc7-8b10b74816c0">
+  <img src="https://github.com/user-attachments/assets/45c6539b-8fae-406b-b0e5-4e70b5cc84c4">
 </div>
 
 # Description
